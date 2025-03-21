@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#define NOMINMAX
 #include <algorithm>
 #include <cstdlib>
 #include "kaizen.h"
