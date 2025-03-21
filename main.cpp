@@ -9,7 +9,7 @@ int n = 1000;
 
 // Iterative Standard Merge Sort
 void iterative_standard_merge_sort(std::vector<int>& arr) {
-    int n = arr.size();
+    int n = static_cast<int>(arr.size());
     std::vector<int> temp(n);
     for (int size = 1; size < n; size *= 2) {
         for (int left = 0; left < n; left += 2 * size) {
@@ -29,7 +29,7 @@ void iterative_standard_merge_sort(std::vector<int>& arr) {
 
 // Iterative Cache-Aware Merge Sort
 void iterative_cache_aware_merge_sort(std::vector<int>& arr, int chunk_size, int line_size) {
-    int n = arr.size();
+    int n = static_cast<int>(arr.size());
     chunk_size = (chunk_size / line_size) * line_size;
     if (chunk_size < line_size) chunk_size = line_size;
     std::vector<int> temp(chunk_size);
@@ -107,7 +107,7 @@ int main(int argc, char** argv) {
     CacheInfo cache = get_cache_info();
     long l1d_size = (cache.l1d_size != -1) ? cache.l1d_size : 32 * 1024;
     long line_size = (cache.line_size != -1) ? cache.line_size : 64;
-    int chunk_size = l1d_size / (4 * sizeof(int));
+    size_t chunk_size = l1d_size / (4 * sizeof(int));
     chunk_size = (chunk_size * sizeof(int) / line_size) * line_size / sizeof(int);
     
     std::cout << "==================== Cache Information ====================\n";
